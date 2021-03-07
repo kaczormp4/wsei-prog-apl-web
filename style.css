@@ -1,0 +1,49 @@
+* {
+  --background-color: #000000;
+  color: grey;
+  border-color: rgb(0, 131, 131);
+  background: transparent
+    linear-gradient(257deg, #3ebdc6 0%, var(--unnamed-color-0096d1) 100%) 0% 0%
+    no-repeat padding-box;
+  background: transparent linear-gradient(257deg, #3ebdc6 0%, #0096d1 100%) 0%
+    0% no-repeat padding-box;
+}
+.box {
+  --border: aqua solid 2px;
+  background-color: #1391c3;
+  color: white;
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
+  box-sizing: border-box;
+  display: flex;
+  transition-duration: 0.6s;
+}
+.logoInBox {
+  color: white;
+  --border: aqua solid 2px;
+  --background-color: #1391c3;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 46px;
+  font-size: 1cm;
+}
+.txtInBox {
+  font-size: 10px;
+  color: white;
+  --border: aqua solid 2px;
+  --background-color: #1391c3;
+  width: 100px;
+  height: 50px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  --text-align: center;
+  line-height: 46px;
+  transition-duration: 2s;
+}
