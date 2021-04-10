@@ -7,10 +7,47 @@
     <title>Document</title>
 </head>
 <body>
-    <audio src="sounds/lab2_sounds_clap.wav" controls data-sound="clap"></audio>
-    <audio src="sounds/lab2_sounds_boom.wav" controls data-sound="boom"></audio>
-    <audio src="sounds/lab2_sounds_hihat.wav" controls data-sound="hihat"></audio>
-    <button id="playChanel1">Play Channel 1</button>
+    <div id="root"></div>
+    <div class="soundButtons">
+
+            <span>Q</span>
+            <audio src="sounds/boom.wav" controls data-sound="boom" ></audio>
+
+            <span>W</span>
+            <audio src="sounds/clap.wav" controls data-sound="clap"></audio>
+
+            <span>E</span>
+            <audio src="sounds/hihat.wav" controls data-sound="hihat"></audio>
+
+            <span>R</span>
+            <audio src="sounds/kick.wav" controls data-sound="kick"></audio>
+
+            <span>T</span>
+            <audio src="sounds/openhat.wav" controls data-sound="openhat"></audio>
+
+            <span>A</span>
+            <audio src="sounds/ride.wav" controls data-sound="ride"></audio>
+
+            <span>S</span>
+            <audio src="sounds/snare.wav" controls data-sound="snare"></audio>
+
+            <span>D</span>
+            <audio src="sounds/tink.wav" controls data-sound="tink"></audio>
+
+            <span>F</span>
+            <audio src="sounds/tom.wav" controls data-sound="tom"></audio>
+
+    </div>
+    <button id="recordChanel1">●</button>
+    <button id="playChanel1">►</button><br>
+    <button id="recordChanel2">●</button>
+    <button id="playChanel2">►</button><br>
+    <button id="recordChanel3">●</button>
+    <button id="playChanel3">►</button><br>
+    <button id="recordChanel4">●</button>
+    <button id="playChanel4">►</button>
+
     <script src="index.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html>
