@@ -1,9 +1,49 @@
 body {
   background: lightblue;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.textInput{
+  width:50vw;
+  height:5vw;
+  font-size: 4rem;
+}
+.searchInput{
+  width:5vw;
+  height:5vw;
+  font-size: 4rem;
+  text-align: center;
+  cursor: pointer;
 }
 .divBox{
-  width: 100px;
-  height: 100px;
-  background-color: antiquewhite;
+  width: 200px;
+  height: auto;
+  background-color: rgb(150, 216, 247);
+  box-shadow: 0 0 10px 1px rgb(182, 227, 248);
   margin: 10px;
+  border-radius: 20px;
+  text-align: center;
+  padding:10px;
+  box-sizing: border-box;
+  font-size: 2rem;
+  .temperature{
+    text-align: center;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size: 3rem;
+  }
+  .info{
+    cursor: pointer;
+    border:4px solid blue;
+  }
+  .moreinfo{
+    // opacity: 0;
+    // height: 0;
+    display: none;
+    font-size: 1.5rem;
+  }
+  .moreinfo-open{
+    opacity: 1;
+    height: auto;
+  }
 }
+
