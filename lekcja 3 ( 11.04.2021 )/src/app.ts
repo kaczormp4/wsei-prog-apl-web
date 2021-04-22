@@ -1,28 +1,62 @@
 export class App {
+    
     Main(){
+        localStorage.clear()
+        this.container();
         this.createInput();
         this.searchInput();
-        this.createWeatherBox('KATOWICE');
-        this.createWeatherBox('RADOM');
+        this.containerWeatherbox()
+        // for(let i=0 ; i <= localStorage.length; i++){
+        //     this.createWeatherBox(`id_${i}`);
+        //     console.log(i)
+        // }
+
+        //this.createWeatherBox('RADOM');
+    }
+    container(){
+        const container: HTMLElement = document.createElement("div");
+        container.className = "container";
+        container.id = "container";
+        document.body.appendChild(container);   
+    }
+    containerWeatherbox(){
+        const containerW: HTMLElement = document.createElement("div");
+        containerW.className = "containerW";
+        containerW.id = "containerW";
+        document.body.appendChild(containerW);   
     }
     createInput(){
         const input: HTMLInputElement = document.createElement("input");
+        const containerBOx: any = document.getElementById("container")
         input.className = "textInput";
         input.id = "textInput";
-        document.body.appendChild(input)   
+        containerBOx.appendChild(input)   
     }
     searchInput(){
         const searchInput: HTMLInputElement = document.createElement("input");
+        const containerBOx: any = document.getElementById("container")
         searchInput.className = "searchInput";
         searchInput.value = "+";
-        searchInput.addEventListener("click",getTownName);
-        document.body.appendChild(searchInput);
-        function getTownName(){
-            var townValue = document.getElementById("textInput");
-            console.log(townValue.value)
-        }
+        searchInput.addEventListener("click",this.getTownName.bind(this));
+        containerBOx.appendChild(searchInput);
+
+    }
+    counter:number = 1;
+    getTownName():any{
+        var townValue: any = document.getElementById("textInput");
+        if (townValue.value !== "")
+        this.getCityInfo(townValue.value).then(() => (this.createWeatherBox(`id_${this.counter}`)))
+        else alert(".")
+        townValue.value = "";        
+        this.counter++
+        // setTimeout(() => {
+        //     location.reload()
+        // }, 222000)
+        
     }
     createWeatherBox(dataName:string){
+        const containerBoxW: any = document.getElementById("containerW")
+
         let data:any = localStorage.getItem(dataName);
         data = JSON.parse(data)
 
@@ -55,7 +89,7 @@ export class App {
         divBox.appendChild(clouds);
         divBox.appendChild(info);
         divBox.appendChild(moreinfo);
-        document.body.appendChild(divBox);
+        containerBoxW.appendChild(divBox);
 
         function showMore(){
             if(moreinfo.style.display !== "none"){
@@ -72,19 +106,18 @@ export class App {
     }
     opwApiKey = '50d53005c0fd5f556bb4ef15224c4209';
     constructor(){
-        this.getCityInfo('radom');
+        //this.getCityInfo('radom');
     }
+
     async getCityInfo(city:string){
-        const weather = await this.getWeather('radom');
-        const weather2 = await this.getWeather('katowice');
-        this.saveData("RADOM",weather);
-        this.saveData("KATOWICE",weather2);
+        const weather = await this.getWeather(city);
+        this.saveData(`id_${this.counter}`,weather);
     }
     async getWeather(city: string): Promise<any>{
         const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.opwApiKey}`;
         const weatherResponse = await fetch(openWeatherUrl);
         const weatherData = await weatherResponse.json();
-        console.log(weatherData);
+        //console.log(weatherData);
         return weatherData;
     }
     saveData(saveName:string ,data:any){
