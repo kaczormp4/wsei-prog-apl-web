@@ -36,6 +36,7 @@ export class App {
         const searchInput: HTMLInputElement = document.createElement("input");
         const containerBOx: any = document.getElementById("container")
         searchInput.className = "searchInput";
+        searchInput.type = "button"
         searchInput.value = "+";
         searchInput.addEventListener("click",this.getTownName.bind(this));
         containerBOx.appendChild(searchInput);
