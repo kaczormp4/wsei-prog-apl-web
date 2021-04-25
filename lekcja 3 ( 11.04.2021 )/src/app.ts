@@ -1,15 +1,18 @@
 export class App {
     
     Main(){
-        localStorage.clear()
+        //localStorage.clear()
+        console.log("FIRST OPEN PAGE localStorage")
+        console.log(localStorage)
         this.container();
         this.createInput();
         this.searchInput();
         this.containerWeatherbox()
-        // for(let i=0 ; i <= localStorage.length; i++){
-        //     this.createWeatherBox(`id_${i}`);
-        //     console.log(i)
-        // }
+        for(let i=1 ; i < localStorage.length; i++){
+            this.createWeatherBox(`id_${i}`);
+            console.log(`id_${i}`)
+            console.log(localStorage.length)
+        }
 
         //this.createWeatherBox('RADOM');
     }
@@ -42,7 +45,8 @@ export class App {
         containerBOx.appendChild(searchInput);
 
     }
-    counter:number = 1;
+    counter:number = localStorage.length > 2 ? localStorage.length-1 : 0;
+
     getTownName():any{
         var townValue: any = document.getElementById("textInput");
         if (townValue.value !== "")
@@ -50,6 +54,7 @@ export class App {
         else alert(".");
         townValue.value = "";        
         this.counter++;
+        console.log("after add localStorage")
         console.log(localStorage)
         // setTimeout(() => {
         //     location.reload()
@@ -116,7 +121,7 @@ export class App {
         this.saveData(`id_${this.counter}`,weather);
     }
     async getWeather(city: string): Promise<any>{
-        const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.opwApiKey}`;
+        const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.opwApiKey}&units=metric`;
         const weatherResponse = await fetch(openWeatherUrl);
         const weatherData = await weatherResponse.json();
         //console.log(weatherData);
