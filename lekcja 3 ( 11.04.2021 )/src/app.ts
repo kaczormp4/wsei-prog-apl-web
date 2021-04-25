@@ -46,10 +46,11 @@ export class App {
     getTownName():any{
         var townValue: any = document.getElementById("textInput");
         if (townValue.value !== "")
-        this.getCityInfo(townValue.value).then(() => (this.createWeatherBox(`id_${this.counter}`)))
-        else alert(".")
+            this.getCityInfo(townValue.value).then(() => (this.createWeatherBox(`id_${this.counter}`)));
+        else alert(".");
         townValue.value = "";        
-        this.counter++
+        this.counter++;
+        console.log(localStorage)
         // setTimeout(() => {
         //     location.reload()
         // }, 222000)
