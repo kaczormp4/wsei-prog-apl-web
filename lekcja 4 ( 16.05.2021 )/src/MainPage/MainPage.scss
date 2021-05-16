@@ -1,0 +1,49 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+.addNote{
+    width:510px;
+    text-align: center;
+    margin-bottom: 5vw;
+    margin-bottom: 2vw;
+    font-size: 2cm;
+    border: 2px solid rgb(240, 240, 240);
+    background-color: white;
+    margin: auto;
+    display: block;
+    padding: 0;
+  }
+.inputTittle{
+    width: 500px;
+    height: 50px;
+    font-size: 1cm;
+    margin:0;
+    border: 0;
+}
+.inputContent{
+    width: 500px;
+    height: 200px;
+    font-size: 1cm;
+}
+.inputConfirm{
+    width: 500px;
+    height: 50px;
+    font-size: 1cm;
+}
+
+.noteBox {
+    width:300px;
+    height: 200px;
+    box-sizing: border-box;
+    border: yellow solid 2px;
+    background-color: yellowgreen;
+    margin: 20px;
+}
+.titleTools {
+    font-weight: bold;
+}
+
+.noteBoxContent {
+
+}
