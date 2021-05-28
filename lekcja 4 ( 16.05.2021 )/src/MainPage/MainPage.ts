@@ -15,16 +15,23 @@ export class MainPage {
         const container: HTMLElement = document.createElement("div");
         const inputTittle: HTMLInputElement = document.createElement("input");
         const inputContent: HTMLTextAreaElement = document.createElement("textarea");
+        const colorPicker: HTMLInputElement = document.createElement("input");
         const inputConfirm: HTMLButtonElement = document.createElement("button");
+
+        let dataTab:any  = [];
+
+        colorPicker.type = "radio";
 
         container.className = "addNote";
         inputTittle.className = "inputTittle";
         inputContent.className = "inputContent";
+        colorPicker.className = "colorPicker";
         inputConfirm.className = "inputConfirm";
 
         container.id = "addNote";
         inputTittle.id = "inputTittle";
         inputContent.id = "inputContent";
+        colorPicker.id = "colorPicker";
         inputConfirm.id = "inputConfirm";
 
         inputTittle.placeholder = "Create Tittle here..";
@@ -34,8 +41,23 @@ export class MainPage {
         document.getElementById('globalAddNote').appendChild(container);   
         container.appendChild(inputTittle);   
         container.appendChild(inputContent);   
+        container.appendChild(colorPicker);     
         container.appendChild(inputConfirm);   
 
+        inputConfirm.addEventListener("click",function(){
+            dataStructure.push(
+                {
+                    id: 1,
+                    tittle: inputTittle.value,
+                    content: inputContent.value,
+                    color: 'purple',
+                    archived: false,
+                    favourite: false,
+                    creationDate: '21-01-2020',
+                }
+            )
+            console.log(dataStructure)
+        })
     }
     NoteBox(tittle: string, contentTxt: string, color: any, archived: boolean, favourite: boolean){
         const container: HTMLElement = document.createElement("div");
