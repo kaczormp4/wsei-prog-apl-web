@@ -1,22 +1,21 @@
 body {
-  background: rgb(87, 87, 87);
+  background: rgb(255, 255, 255);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
-#globalAddNote{
+#globalAddNote {
   width: 100%;
 }
-#globalNotes{
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-#globalFavourite{
+#globalNotes {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
-#globalConteiner{
+#globalFavourite {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#globalConteiner {
   width: 100%;
 }
