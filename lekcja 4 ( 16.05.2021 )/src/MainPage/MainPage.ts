@@ -155,16 +155,19 @@ export class MainPage {
     const container: HTMLElement = document.createElement("div");
     const titleTools: HTMLElement = document.createElement("div");
     const isFav: HTMLElement = document.createElement("div");
+    const delBut: HTMLElement = document.createElement("div");
     const content: HTMLElement = document.createElement("div");
 
     container.className = "noteBox";
     titleTools.className = "titleTools";
     isFav.className = "isFav";
+    delBut.className = "delBut";
     content.className = "noteBoxContent";
 
     container.id = id;
     titleTools.id = "titleTools";
     isFav.id = "isFav";
+    delBut.id = "delBut";
     content.id = "content";
 
     container.style.backgroundColor = color;
@@ -172,6 +175,7 @@ export class MainPage {
 
     titleTools.innerHTML = tittle;
     isFav.innerHTML = '★';
+    delBut.innerHTML = '✖';
     content.innerHTML = contentTxt;
 
     if( favourite ){
@@ -184,8 +188,20 @@ export class MainPage {
                     localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
                 }
             })
-            console.log(newDataStructure)
+            window.location.reload();
           });
+        delBut.addEventListener("click", function () {
+            newDataStructure.map(v =>{
+                if(v.id === container.id){
+                    console.log(v)
+                    // v.favourite = !v.favourite;
+                    // localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
+                }
+            })
+           // window.location.reload();
+           // ///////////////////////////////////////////////////////////////////////////////TU DODAC DELETE
+        });
+        container.appendChild(delBut);
         container.appendChild(isFav);
         container.appendChild(titleTools);
         container.appendChild(content);
@@ -193,6 +209,16 @@ export class MainPage {
     else{
         document.getElementById("globalNotes").appendChild(container);
         isFav.className = "isNoFav";
+        isFav.addEventListener("click", function () {
+            newDataStructure.map(v =>{
+                if(v.id === container.id){
+                    v.favourite = !v.favourite;
+                    localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
+                }
+            })
+            window.location.reload();
+          });
+        container.appendChild(delBut);
         container.appendChild(isFav);
         container.appendChild(titleTools);
         container.appendChild(content);
