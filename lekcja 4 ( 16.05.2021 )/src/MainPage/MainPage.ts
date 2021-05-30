@@ -85,7 +85,14 @@ export class MainPage {
         archived: boolean;
         favourite: boolean;
       }) => {
-        this.NoteBox(v.id, v.tittle, v.content, v.color, v.archived, v.favourite);
+        this.NoteBox(
+          v.id,
+          v.tittle,
+          v.content,
+          v.color,
+          v.archived,
+          v.favourite
+        );
       }
     );
   }
@@ -132,7 +139,9 @@ export class MainPage {
 
     inputConfirm.addEventListener("click", function () {
       newDataStructure.push({
-        id: `id_${inputTittle.value}_${colorMemory}_${Math.floor(Math.random() * 100)}`,
+        id: `id_${inputTittle.value}_${colorMemory}_${Math.floor(
+          Math.random() * 10000
+        )}`,
         tittle: inputTittle.value,
         content: inputContent.value,
         color: colorMemory,
@@ -174,54 +183,76 @@ export class MainPage {
     container.style.borderColor = color;
 
     titleTools.innerHTML = tittle;
-    isFav.innerHTML = '★';
-    delBut.innerHTML = '✖';
+    isFav.innerHTML = "★";
+    delBut.innerHTML = "✖";
     content.innerHTML = contentTxt;
 
-    if( favourite ){
-        document.getElementById("globalFavourite").appendChild(container);
-        isFav.className = "isFav";
-        isFav.addEventListener("click", function () {
-            newDataStructure.map(v =>{
-                if(v.id === container.id){
-                    v.favourite = !v.favourite;
-                    localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
-                }
-            })
-            window.location.reload();
-          });
-        delBut.addEventListener("click", function () {
-            newDataStructure.map(v =>{
-                if(v.id === container.id){
-                    console.log(v)
-                    // v.favourite = !v.favourite;
-                    // localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
-                }
-            })
-           // window.location.reload();
-           // ///////////////////////////////////////////////////////////////////////////////TU DODAC DELETE
+    if (favourite) {
+      document.getElementById("globalFavourite").appendChild(container);
+      isFav.className = "isFav";
+      isFav.addEventListener("click", function () {
+        newDataStructure.map((v) => {
+          if (v.id === container.id) {
+            v.favourite = !v.favourite;
+            localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
+          }
         });
-        container.appendChild(delBut);
-        container.appendChild(isFav);
-        container.appendChild(titleTools);
-        container.appendChild(content);
-    }
-    else{
-        document.getElementById("globalNotes").appendChild(container);
-        isFav.className = "isNoFav";
-        isFav.addEventListener("click", function () {
-            newDataStructure.map(v =>{
-                if(v.id === container.id){
-                    v.favourite = !v.favourite;
-                    localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
-                }
-            })
-            window.location.reload();
-          });
-        container.appendChild(delBut);
-        container.appendChild(isFav);
-        container.appendChild(titleTools);
-        container.appendChild(content);
+        window.location.reload();
+      });
+      delBut.addEventListener("click", function () {
+        newDataStructure.map((v) => {
+          if (v.id === container.id) {
+            console.log(newDataStructure.indexOf(v));
+            const index: number = newDataStructure.indexOf(v);
+            localStorage.setItem(
+              "myNotes",
+              JSON.stringify(
+                newDataStructure.filter(function (deleted) {
+                  return deleted != newDataStructure[index];
+                })
+              )
+            );
+          }
+        });
+        window.location.reload();
+      });
+      container.appendChild(delBut);
+      container.appendChild(isFav);
+      container.appendChild(titleTools);
+      container.appendChild(content);
+    } else {
+      document.getElementById("globalNotes").appendChild(container);
+      isFav.className = "isNoFav";
+      isFav.addEventListener("click", function () {
+        newDataStructure.map((v) => {
+          if (v.id === container.id) {
+            v.favourite = !v.favourite;
+            localStorage.setItem("myNotes", JSON.stringify(newDataStructure));
+          }
+        });
+        window.location.reload();
+      });
+      delBut.addEventListener("click", function () {
+        newDataStructure.map((v) => {
+          if (v.id === container.id) {
+            console.log(newDataStructure.indexOf(v));
+            const index: number = newDataStructure.indexOf(v);
+            localStorage.setItem(
+              "myNotes",
+              JSON.stringify(
+                newDataStructure.filter(function (deleted) {
+                  return deleted != newDataStructure[index];
+                })
+              )
+            );
+          }
+        });
+        window.location.reload();
+      });
+      container.appendChild(delBut);
+      container.appendChild(isFav);
+      container.appendChild(titleTools);
+      container.appendChild(content);
     }
   }
 
