@@ -38,27 +38,9 @@ const dataStructure = [
     favourite: false,
     creationDate: "21-01-2020",
   },
-  {
-    id: 2,
-    tittle: "Zakupy",
-    content: "Mleko, Pomidory, woda",
-    color: "yellow",
-    archived: false,
-    favourite: false,
-    creationDate: "21-01-2020",
-  },
-  {
-    id: 3,
-    tittle: "Rachunki",
-    content: "Prąd, Internet",
-    color: "green",
-    archived: false,
-    favourite: false,
-    creationDate: "21-01-2020",
-  },
 ];
 
-const getData: any = JSON.parse(localStorage.getItem("myNotes"));
+let getData: any = JSON.parse(localStorage.getItem("myNotes"));
 
 const newDataStructure: {
   id: string;
@@ -70,7 +52,13 @@ const newDataStructure: {
   creationDate: string;
 }[] = [];
 
-newDataStructure.push(...getData);
+if(getData !== null){
+    newDataStructure.push(...getData);
+
+}else{
+    localStorage.setItem("myNotes", JSON.stringify(dataStructure));
+    window.location.reload();
+}
 
 export class MainPage {
   constructor() {}
