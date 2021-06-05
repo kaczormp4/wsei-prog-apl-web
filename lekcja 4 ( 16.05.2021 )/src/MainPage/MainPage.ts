@@ -56,7 +56,7 @@ if(getData !== null){
     newDataStructure.push(...getData);
 
 }else{
-    localStorage.setItem("myNotes", JSON.stringify(dataStructure));
+    localStorage.setItem("myNotes", JSON.stringify([]));
     window.location.reload();
 }
 
