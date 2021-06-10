@@ -32,7 +32,7 @@ const dataStructure = [
     id: 1,
     tittle: "Tytuł",
     content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when a",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipum has been the industry standard dummy text ever since the 1500s, when a",
     color: "red",
     archived: false,
     favourite: false,
