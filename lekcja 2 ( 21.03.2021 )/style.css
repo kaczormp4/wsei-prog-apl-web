@@ -1,14 +1,27 @@
 .soundButtons{
     display: flex;
     flex-wrap: wrap;
+    width: 50vw;
+    margin: auto;
+    justify-content: space-around;
 }
 .soundButtons > span{
-    width:100px;
-    height: 100px;
-    background-color: rgb(206, 31, 31);
-    font-size: 2cm;
+    box-sizing: border-box;
+    width: 13vw;
+    height: 13vw;
+    line-height: 13vw;
+    background-color: rgb(101, 255, 11);
+    border: 3px solid gold;
+    border-radius: 50px;
+    font-size: 3cm;
     text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 20px;
+    margin-left: 20px;
+    box-shadow: 0 0 10px 0px black;
+}
+.buttonOnclick {
+    background-color: black;
 }
 .soundButtons > audio {
     width:100px;

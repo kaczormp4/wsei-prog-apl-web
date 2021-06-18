@@ -33,6 +33,7 @@ function onKeyDown(ev: KeyboardEvent): void {
     switch (key) {
         case "q":
             playSound(boomAudio);
+            console.log(boomAudio.parentElement.className)
           break;
         case "w":
             playSound(clapAudio);

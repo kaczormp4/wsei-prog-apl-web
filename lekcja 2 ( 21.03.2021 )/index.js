@@ -1,3 +1,4 @@
+///tymczasowe wiem ze zle
 var chanel1 = [];
 var chanel2 = [];
 var chanel3 = [];
@@ -24,11 +25,10 @@ playChanel1Btn.addEventListener('click', onPlayChanel1);
 function onKeyDown(ev) {
     var key = ev.key;
     var time = ev.timeStamp;
-    console.log("sss");
     switch (key) {
         case "q":
             playSound(boomAudio);
-            console.log("s");
+            console.log(boomAudio.parentElement.className);
             break;
         case "w":
             playSound(clapAudio);
