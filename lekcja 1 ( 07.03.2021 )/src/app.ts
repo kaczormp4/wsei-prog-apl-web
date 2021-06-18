@@ -5,7 +5,6 @@ export class App {
     }
 
     Main() {
-        console.log("FIRST OPEN PAGE localStorage")
         this.inputCreator();
         this.showResult();
     }
@@ -34,9 +33,14 @@ export class App {
             localTab = [];
             localTab.push(value)
             tab.push(...localTab)
-            console.log(tab)
         });
         input.addEventListener('dblclick',() => {
+            const value: number = parseInt(input.value);
+            const index = tab.indexOf(value);
+            if (index > -1) {
+                tab.splice(index, 1);
+            }
+
             input.remove();
         })
         document.getElementById("root").appendChild(input);
