@@ -1,8 +1,8 @@
-///tymczasowe wiem ze zle
 const chanel1: any[] = [];
 const chanel2: any[] = [];
 const chanel3: any[] = [];
 const chanel4: any[] = [];
+
 const boomAudio: HTMLAudioElement = document.querySelector('[data-sound="boom"]');
 const clapAudio: HTMLAudioElement = document.querySelector('[data-sound="clap"]');
 const hihatAudio: HTMLAudioElement = document.querySelector('[data-sound="hihat"]');
@@ -23,111 +23,209 @@ const recordChanel2Btn: HTMLButtonElement = document.querySelector('#recordChane
 const recordChanel3Btn: HTMLButtonElement = document.querySelector('#recordChanel3');
 const recordChanel4Btn: HTMLButtonElement = document.querySelector('#recordChanel4');
 
-document.body.addEventListener('keypress',onKeyDown);
-playChanel1Btn.addEventListener('click',onPlayChanel1);
+document.body.addEventListener('keypress',(ev) => onKeyDown(ev, null));
+playChanel1Btn.addEventListener('click', (ev) => playChanel(ev, playChanel1Btn, chanel1));
+playChanel2Btn.addEventListener('click', (ev) => playChanel(ev, playChanel2Btn, chanel2));
+playChanel3Btn.addEventListener('click', (ev) => playChanel(ev, playChanel3Btn, chanel3));
+playChanel4Btn.addEventListener('click', (ev) => playChanel(ev, playChanel4Btn, chanel4));
+
+recordChanel1Btn.addEventListener('click',(ev) => recordChanel(ev, recordChanel1Btn, chanel1));
+recordChanel2Btn.addEventListener('click',(ev) => recordChanel(ev, recordChanel2Btn, chanel2));
+recordChanel3Btn.addEventListener('click',(ev) => recordChanel(ev, recordChanel3Btn, chanel3));
+recordChanel4Btn.addEventListener('click',(ev) => recordChanel(ev, recordChanel4Btn, chanel4));
 
 
-function onKeyDown(ev: KeyboardEvent): void {
+
+function onKeyDown(ev: KeyboardEvent, chanelTab: any): void {
     const key = ev.key;
     const time = ev.timeStamp;
     switch (key) {
         case "q":
             playSound(boomAudio);
-            console.log(boomAudio.parentElement.className)
+            changeStyle(boomAudio);
           break;
         case "w":
             playSound(clapAudio);
+            changeStyle(clapAudio);
           break;
         case "e":
             playSound(hihatAudio);
+            changeStyle(hihatAudio);
           break;
         case "r":
             playSound(kickAudio);
+            changeStyle(kickAudio);
           break;
         case "t":
             playSound(openhatAudio);
+            changeStyle(openhatAudio);
           break;
         case "a":
             playSound(rideAudio);
+            changeStyle(rideAudio);
           break;
         case "s":
             playSound(snareAudio);
+            changeStyle(snareAudio);
           break;
         case "d":
             playSound(tinkAudio);
+            changeStyle(tinkAudio);
           break;
         case "f":
             playSound(tomAudio);
+            changeStyle(tomAudio);
           break;
       }
-    chanel1.push({
+      chanelTab.push({
         key,
         time
-    });
+      });
+      console.log(chanelTab)
+      console.log('--------------')
+      console.log(chanel1)
+      console.log(chanel2)
+      console.log(chanel3)
+      console.log('--------------')
+
 }
+
 
 function playSound(instrument : HTMLAudioElement){
     instrument.currentTime = 0;
     instrument.play();
 }
 
-function onPlayChanel1():void {
-    playChannel(chanel1);  
-    console.log(chanel1)
+// function onPlayChanel1():void {
+//     playChannel(chanel1);  
+//     console.log(chanel1)
+
+// }
+
+// function onPlayChanel2():void {
+//     playChannel(chanel2);  
+//     console.log(chanel2)
+// }
+function recordChanel(ev: any, chanelNumber:any, tab:any): void {
+  if (chanelNumber.style.color !== 'red'){
+    chanelNumber.style.color ='red'
+  }else{
+    chanelNumber.style.color = 'black'
+  }
+
+  document.body.addEventListener('keypress',(ev) => onKeyDown(ev, tab));
 
 }
 
-function onPlayChanel2():void {
-    playChannel(chanel2);  
-    console.log(chanel2)
+function playChanel(event: any, chanelNumber: any, chanelTab: any) {
+  if (chanelNumber.innerHTML !== '||'){
+    chanelNumber.innerHTML ='||'
+  }else{
+    chanelNumber.innerHTML = '►'
+  }
+  onPlayChannel(chanelTab, event.target.id);
 }
 
-function recordChanel():void {
-    // const key = ev.key;
-    // const time = ev.timeStamp;
-    // chanel1.push({
-    //     key,
-    //     time
-    // });
+function onPlayChannel(chanel:any, event:any) {
+  let prevTime = 0;
+  chanel.forEach(sound => {
+      const timeout = sound.time - prevTime;
+      setTimeout(() => {
+        console.log(chanel)
+          switch (sound.key) {
+              case "q":
+                  playSound(boomAudio);
+                break;
+              case "w":
+                  playSound(clapAudio);
+                break;
+              case "e":
+                  playSound(hihatAudio);
+                break;
+              case "r":
+                  playSound(kickAudio);
+                break;
+              case "t":
+                  playSound(openhatAudio);
+                break;
+              case "a":
+                  playSound(rideAudio);
+                break;
+              case "s":
+                  playSound(snareAudio);
+                break;
+              case "d":
+                  playSound(tinkAudio);
+                break;
+              case "f":
+                  playSound(tomAudio);
+                break;
+            }
+          console.log(sound.key)
+   
+      },timeout)
+      
+  })
 }
 
-function playChannel(chanel : any):void{
-    let prevTime = 0;
-    chanel.forEach(sound =>{
-        const timeout = sound.time - prevTime;
-        setTimeout(() => {
-            switch (sound.key) {
-                case "q":
-                    playSound(boomAudio);
-                  break;
-                case "w":
-                    playSound(clapAudio);
-                  break;
-                case "e":
-                    playSound(hihatAudio);
-                  break;
-                case "r":
-                    playSound(kickAudio);
-                  break;
-                case "t":
-                    playSound(openhatAudio);
-                  break;
-                case "a":
-                    playSound(rideAudio);
-                  break;
-                case "s":
-                    playSound(snareAudio);
-                  break;
-                case "d":
-                    playSound(tinkAudio);
-                  break;
-                case "f":
-                    playSound(tomAudio);
-                  break;
-              }
-            console.log(sound.key)
+// function :void {
+//     // const key = ev.key;
+//     // const time = ev.timeStamp;
+//     // chanel1.push({
+//     //     key,
+//     //     time
+//     // });
+// }
+
+// function playChannel(chanel : any):void{
+//     let prevTime = 0;
+//     chanel.forEach(sound =>{
+//         const timeout = sound.time - prevTime;
+//         setTimeout(() => {
+//             switch (sound.key) {
+//                 case "q":
+//                     playSound(boomAudio);
+//                   break;
+//                 case "w":
+//                     playSound(clapAudio);
+//                   break;
+//                 case "e":
+//                     playSound(hihatAudio);
+//                   break;
+//                 case "r":
+//                     playSound(kickAudio);
+//                   break;
+//                 case "t":
+//                     playSound(openhatAudio);
+//                   break;
+//                 case "a":
+//                     playSound(rideAudio);
+//                   break;
+//                 case "s":
+//                     playSound(snareAudio);
+//                   break;
+//                 case "d":
+//                     playSound(tinkAudio);
+//                   break;
+//                 case "f":
+//                     playSound(tomAudio);
+//                   break;
+//               }
+//             console.log(sound.key)
      
-        },timeout)
+//         },timeout)
         
-    })
+//     })
+// }
+function changeStyle(element : HTMLElement){
+  if (element.parentElement.className === 'buttonEach' ){
+    element.parentElement.className = 'buttonOnclick'
+    setTimeout(() => {
+      element.parentElement.className = 'buttonEach'
+    }, 300);
+  }
+  else{
+    element.parentElement.className = 'buttonEach'
+
+  }
 }
